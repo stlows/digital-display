@@ -10,6 +10,17 @@
   </head>
   <body>
     <div id="app">
+      <div class="displayContainer">
+        <div class="display" :style="{backgroundColor:bgColor}">
+          <div class="character" :class="size" v-for="char in characters">
+            <div
+              v-for="i in 7"
+              :class="['line', 'line' + (i - 1)]"
+              :style="{backgroundColor: char[i-1] ? letterColorActive : letterColorInactive}"
+            ></div>
+          </div>
+        </div>
+      </div>
       <div class="inputGroup">
         <label for="message">Your input</label>
         <input id="message" type="text" v-model="message" />
@@ -49,17 +60,6 @@
         <br />
         <input type="color" id="bgColor" value="#000000" v-model="bgColor" />
         <label for="bgColor">bgColor</label>
-      </div>
-      <div class="displayContainer">
-        <div class="display" :style="{backgroundColor:bgColor}">
-          <div class="character" :class="size" v-for="char in characters">
-            <div
-              v-for="i in 7"
-              :class="['line', 'line' + (i - 1)]"
-              :style="{backgroundColor: char[i-1] ? letterColorActive : letterColorInactive}"
-            ></div>
-          </div>
-        </div>
       </div>
       <p>Non valid characters are: {{ notValidChars }}</p>
       <p>If a letter is non valid as-is, it will check if it's available in uppercase, then in lowercase.</p>
