@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Digital Display</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="dist/css/style.min.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="inputGroup">
+        <label for="message">Your input</label>
+        <input id="message" type="text" v-model="message" />
+      </div>
+      <div class="displayContainer">
+        <div class="display">
+          <div class="character bigger" v-for="char in characters">
+            <div v-for="i in 7" :class="[{isOn: char[i-1]},'line', 'line' + (i - 1)]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
