@@ -45,8 +45,8 @@ var app = new Vue({
     notValidChars: ["a", "e", "f", "G", "g", "j", "K", "k", "M", "m", "N", "p", "R", "s", "T", "t", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"],
     exactMatch: false,
     capitalization: "caseSensitive",
-    letterColorActive: "#ff0000",
-    letterColorInactive: "#222222",
+    letterColorActive: "#27b30f",
+    letterColorInactive: "#103104",
     bgColor: "#000000"
   },
   computed: {
