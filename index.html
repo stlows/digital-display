@@ -6,21 +6,63 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Digital Display</title>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <link rel="stylesheet" href="dist/css/style.min.css" />
+    <link rel="stylesheet" href="style.min.css" />
   </head>
   <body>
     <div id="app">
       <div class="inputGroup">
         <label for="message">Your input</label>
         <input id="message" type="text" v-model="message" />
+        <br />
+        <input type="radio" id="smaller" value="smaller" v-model="size" />
+        <label for="smaller">Smaller</label>
+        <br />
+        <input type="radio" id="small" value="small" v-model="size" />
+        <label for="small">Small</label>
+        <br />
+        <input type="radio" id="normal" value="normal" v-model="size" />
+        <label for="normal">Normal</label>
+        <br />
+        <input type="radio" id="big" value="big" v-model="size" />
+        <label for="big">Big</label>
+        <br />
+        <input type="radio" id="bigger" value="bigger" v-model="size" />
+        <label for="bigger">Bigger</label>
+        <hr />
+        <input type="checkbox" id="exactMatch" v-model="exactMatch" />
+        <label for="exactMatch">Exact Match</label>
+        <hr />
+        <input type="radio" id="allLower" value="allLower" v-model="capitalization" />
+        <label for="allLower">All lower case</label>
+        <br />
+        <input type="radio" id="caseSensitive" value="caseSensitive" v-model="capitalization" />
+        <label for="caseSensitive">Case Sensitive</label>
+        <br />
+        <input type="radio" id="allUpper" value="allUpper" v-model="capitalization" />
+        <label for="allUpper">All Upper Case</label>
+        <hr />
+        <input type="color" id="letterColorActive" value="#ff0000" v-model="letterColorActive" />
+        <label for="letterColorActive">letterColorActive</label>
+        <br />
+        <input type="color" id="letterColorInactive" value="#222222" v-model="letterColorInactive" />
+        <label for="letterColorInactive">letterColorInactive</label>
+        <br />
+        <input type="color" id="bgColor" value="#000000" v-model="bgColor" />
+        <label for="bgColor">bgColor</label>
       </div>
       <div class="displayContainer">
-        <div class="display">
-          <div class="character bigger" v-for="char in characters">
-            <div v-for="i in 7" :class="[{isOn: char[i-1]},'line', 'line' + (i - 1)]"></div>
+        <div class="display" :style="{backgroundColor:bgColor}">
+          <div class="character" :class="size" v-for="char in characters">
+            <div
+              v-for="i in 7"
+              :class="['line', 'line' + (i - 1)]"
+              :style="{backgroundColor: char[i-1] ? letterColorActive : letterColorInactive}"
+            ></div>
           </div>
         </div>
       </div>
+      <p>Non valid characters are: {{ notValidChars }}</p>
+      <p>If a letter is non valid as-is, it will check if it's available in uppercase, then in lowercase.</p>
     </div>
     <script src="app.js"></script>
   </body>

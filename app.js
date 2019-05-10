@@ -25,19 +25,29 @@ const dict = {
   J: [false, false, true, false, true, true, true],
   L: [false, true, false, false, true, false, true],
   l: [false, true, false, false, true, false, false],
+  n: [false, false, false, true, true, true, false],
   O: [true, true, true, false, true, true, true],
   o: [false, false, false, true, true, true, true],
   P: [true, true, true, true, true, false, false],
   r: [false, false, false, true, true, false, false],
   S: [true, true, false, true, false, true, true],
   U: [false, true, true, false, true, true, true],
-  u: [false, false, false, false, true, true, true]
+  u: [false, false, false, false, true, true, true],
+  "-": [false, false, false, true, false, false, false],
+  _: [false, false, false, false, false, false, true]
 };
 
 var app = new Vue({
   el: "#app",
   data: {
-    message: "A"
+    message: "---",
+    size: "normal",
+    notValidChars: ["a", "e", "f", "G", "g", "j", "K", "k", "M", "m", "N", "p", "R", "s", "T", "t", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"],
+    exactMatch: false,
+    capitalization: "caseSensitive",
+    letterColorActive: "#ff0000",
+    letterColorInactive: "#222222",
+    bgColor: "#000000"
   },
   computed: {
     characters() {
@@ -49,17 +59,40 @@ var app = new Vue({
   },
   methods: {
     linesFromChar(c) {
-      if (dict[c]) {
-        return dict[c];
-      } else if (dict[c.toUpperCase()]) {
-        return dict[c.toUpperCase()];
-      } else if (dict[c.toLowerCase()]) {
-        return dict[c.toLowerCase()];
+      if (this.exactMatch) {
+        if (dict[c]) {
+          return dict[c];
+        }
+      } else {
+        if (this.capitalization === "caseSensitive") {
+          if (dict[c]) {
+            return dict[c];
+          } else if (dict[c.toUpperCase()]) {
+            return dict[c.toUpperCase()];
+          } else if (dict[c.toLowerCase()]) {
+            return dict[c.toLowerCase()];
+          }
+        } else if (this.capitalization === "allLower") {
+          if (dict[c.toLowerCase()]) {
+            return dict[c.toLowerCase()];
+          }
+        } else if (this.capitalization === "allUpper") {
+          if (dict[c.toUpperCase()]) {
+            return dict[c.toUpperCase()];
+          }
+        }
       }
+
       return [false, false, false, false, false, false, false];
+    },
+    setMessageToCurrentDate() {
+      var d = new Date();
+      var mm = d.getMonth() + 1;
+      var dd = d.getDate();
+      this.message = d.getFullYear() + "-" + (mm > 9 ? "" : "0") + mm + "-" + (dd > 9 ? "" : "0") + dd;
     }
   },
   created() {
-    console.log("created");
+    this.setMessageToCurrentDate();
   }
 });

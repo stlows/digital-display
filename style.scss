@@ -4,22 +4,17 @@
   box-sizing: border-box;
 }
 .display {
-  padding: 1em;
-  background-color: black;
   display: inline-block;
 }
 
 .line {
   display: block;
   position: absolute;
-  background-color: #222;
-}
-.line.isOn {
-  background-color: rgb(199, 22, 22);
 }
 
 .character {
   display: inline-block;
+  margin: 10px;
 }
 
 $biggerH: 100px;
@@ -37,178 +32,53 @@ $smallW: 6px;
 $smallerH: 20px;
 $smallerW: 4px;
 
-.character.bigger {
-  width: $biggerH + $biggerW;
-  height: 2 * $biggerH + $biggerW;
-  margin-top: -$biggerW/2;
-  margin-right: 10px;
+@mixin character($h, $w) {
+  width: $h + $w;
+  height: 2 * $h + $w;
+  margin: $w/2;
   .line {
-    clip-path: polygon(50% 0, 100% $biggerW/2, 100% $biggerH - $biggerW/2, 50% 100%, 0 $biggerH - $biggerW/2, 0 $biggerW/2);
-    width: $biggerW;
-    height: $biggerH;
+    clip-path: polygon(50% 0, 100% $w/2, 100% $h - $w/2, 50% 100%, 0 $h - $w/2, 0 $w/2);
+    width: $w;
+    height: $h;
   }
   .line0 {
-    transform: rotate(-90deg) translate(-$biggerW/2, 0px);
+    transform: rotate(-90deg) translate(-$w/2, 0px);
     transform-origin: top center;
   }
   .line1 {
-    transform: translate(0px, $biggerW/2);
+    transform: translate(0px, $w/2);
   }
   .line2 {
-    transform: translate($biggerH, $biggerW/2);
+    transform: translate($h, $w/2);
   }
   .line3 {
-    transform: rotate(90deg) translate($biggerW/2, 0px);
+    transform: rotate(90deg) translate($w/2, 0px);
     transform-origin: center bottom;
   }
   .line4 {
-    transform: translate(0px, $biggerH + $biggerW/2);
+    transform: translate(0px, $h + $w/2);
   }
   .line5 {
-    transform: translate($biggerH, $biggerH + $biggerW/2);
+    transform: translate($h, $h + $w/2);
   }
   .line6 {
-    transform: translate(0px, $biggerH + $biggerW/2) rotate(90deg);
+    transform: translate(0px, $h + $w/2) rotate(90deg);
     transform-origin: center bottom;
   }
+}
+
+.character.bigger {
+  @include character($biggerH, $biggerW);
 }
 .character.big {
-  width: $bigH + $bigW;
-  height: 2 * $bigH + $bigW;
-  margin-top: -$bigW/2;
-  margin-right: 10px;
-  .line {
-    clip-path: polygon(50% 0, 100% $bigW/2, 100% $bigH - $bigW/2, 50% 100%, 0 $bigH - $bigW/2, 0 $bigW/2);
-    width: $bigW;
-    height: $bigH;
-  }
-  .line0 {
-    transform: rotate(-90deg) translate(-$bigW/2, 0px);
-    transform-origin: top center;
-  }
-  .line1 {
-    transform: translate(0px, $bigW/2);
-  }
-  .line2 {
-    transform: translate($bigH, $bigW/2);
-  }
-  .line3 {
-    transform: rotate(90deg) translate($bigW/2, 0px);
-    transform-origin: center bottom;
-  }
-  .line4 {
-    transform: translate(0px, $bigH + $bigW/2);
-  }
-  .line5 {
-    transform: translate($bigH, $bigH + $bigW/2);
-  }
-  .line6 {
-    transform: translate(0px, $bigH + $bigW/2) rotate(90deg);
-    transform-origin: center bottom;
-  }
+  @include character($bigH, $bigW);
 }
 .character.normal {
-  width: $normalH + $normalW;
-  height: 2 * $normalH + $normalW;
-  margin-top: -$normalW/2;
-  margin-right: 10px;
-  .line {
-    clip-path: polygon(50% 0, 100% $normalW/2, 100% $normalH - $normalW/2, 50% 100%, 0 $normalH - $normalW/2, 0 $normalW/2);
-    width: $normalW;
-    height: $normalH;
-  }
-  .line0 {
-    transform: rotate(-90deg) translate(-$normalW/2, 0px);
-    transform-origin: top center;
-  }
-  .line1 {
-    transform: translate(0px, $normalW/2);
-  }
-  .line2 {
-    transform: translate($normalH, $normalW/2);
-  }
-  .line3 {
-    transform: rotate(90deg) translate($normalW/2, 0px);
-    transform-origin: center bottom;
-  }
-  .line4 {
-    transform: translate(0px, $normalH + $normalW/2);
-  }
-  .line5 {
-    transform: translate($normalH, $normalH + $normalW/2);
-  }
-  .line6 {
-    transform: translate(0px, $normalH + $normalW/2) rotate(90deg);
-    transform-origin: center bottom;
-  }
+  @include character($normalH, $normalW);
 }
 .character.small {
-  width: $smallH + $smallW;
-  height: 2 * $smallH + $smallW;
-  margin-top: -$smallW/2;
-  margin-right: 10px;
-  .line {
-    clip-path: polygon(50% 0, 100% $smallW/2, 100% $smallH - $smallW/2, 50% 100%, 0 $smallH - $smallW/2, 0 $smallW/2);
-    width: $smallW;
-    height: $smallH;
-  }
-  .line0 {
-    transform: rotate(-90deg) translate(-$smallW/2, 0px);
-    transform-origin: top center;
-  }
-  .line1 {
-    transform: translate(0px, $smallW/2);
-  }
-  .line2 {
-    transform: translate($smallH, $smallW/2);
-  }
-  .line3 {
-    transform: rotate(90deg) translate($smallW/2, 0px);
-    transform-origin: center bottom;
-  }
-  .line4 {
-    transform: translate(0px, $smallH + $smallW/2);
-  }
-  .line5 {
-    transform: translate($smallH, $smallH + $smallW/2);
-  }
-  .line6 {
-    transform: translate(0px, $smallH + $smallW/2) rotate(90deg);
-    transform-origin: center bottom;
-  }
+  @include character($smallH, $smallW);
 }
 .character.smaller {
-  width: $smallerH + $smallerW;
-  height: 2 * $smallerH + $smallerW;
-  margin-top: -$smallerW/2;
-  margin-right: 10px;
-  .line {
-    clip-path: polygon(50% 0, 100% $smallerW/2, 100% $smallerH - $smallerW/2, 50% 100%, 0 $smallerH - $smallerW/2, 0 $smallerW/2);
-    width: $smallerW;
-    height: $smallerH;
-  }
-  .line0 {
-    transform: rotate(-90deg) translate(-$smallerW/2, 0px);
-    transform-origin: top center;
-  }
-  .line1 {
-    transform: translate(0px, $smallerW/2);
-  }
-  .line2 {
-    transform: translate($smallerH, $smallerW/2);
-  }
-  .line3 {
-    transform: rotate(90deg) translate($smallerW/2, 0px);
-    transform-origin: center bottom;
-  }
-  .line4 {
-    transform: translate(0px, $smallerH + $smallerW/2);
-  }
-  .line5 {
-    transform: translate($smallerH, $smallerH + $smallerW/2);
-  }
-  .line6 {
-    transform: translate(0px, $smallerH + $smallerW/2) rotate(90deg);
-    transform-origin: center bottom;
-  }
+  @include character($smallerH, $smallerW);
 }
