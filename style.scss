@@ -4,6 +4,43 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 2em;
+}
+.t-center {
+  text-align: center;
+}
+input#message {
+  font-size: 1.5em;
+  text-align: center;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #333;
+  min-width: 150px;
+  transition: all 0.5s;
+  margin-top: 0.5em;
+}
+input#message:focus {
+  min-width: 400px;
+}
+input[type="radio"] {
+  display: none;
+}
+label.radioSelect {
+  padding: 5px 10px;
+  margin: 0.5em;
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+label.radioSelect.selected {
+  padding: 4px 9px;
+  border: 2px solid #0580b1;
+  color: #0580b1;
+  box-shadow: 0 0 5px 0 rgba(black, 0.3);
+}
 .displayContainer {
   margin: 30px 0;
   text-align: center;

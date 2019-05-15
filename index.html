@@ -21,36 +21,57 @@
           </div>
         </div>
       </div>
-      <div class="inputGroup">
-        <label for="message">Your input</label>
-        <input id="message" type="text" v-model="message" />
+      <div class="inputs">
+        <div class="t-center">
+          <label for="message">Your message:</label><br />
+          <input id="message" type="text" v-model="message" />
+        </div>
         <br />
-        <input type="radio" id="smaller" value="smaller" v-model="size" />
-        <label for="smaller">Smaller</label>
-        <br />
-        <input type="radio" id="small" value="small" v-model="size" />
-        <label for="small">Small</label>
-        <br />
-        <input type="radio" id="normal" value="normal" v-model="size" />
-        <label for="normal">Normal</label>
-        <br />
-        <input type="radio" id="big" value="big" v-model="size" />
-        <label for="big">Big</label>
-        <br />
-        <input type="radio" id="bigger" value="bigger" v-model="size" />
-        <label for="bigger">Bigger</label>
+        <div class="t-center">
+          <label for="smaller" class="radioSelect" :class="{selected:size === 'smaller'}"
+            >Smaller
+            <input type="radio" id="smaller" value="smaller" v-model="size" />
+          </label>
+          <label for="small" class="radioSelect" :class="{selected:size === 'small'}"
+            >Small
+            <input type="radio" id="small" value="small" v-model="size" />
+          </label>
+          <label for="normal" class="radioSelect" :class="{selected:size === 'normal'}"
+            >Normal
+            <input type="radio" id="normal" value="normal" v-model="size" />
+          </label>
+          <label for="big" class="radioSelect" :class="{selected:size === 'big'}"
+            >Big
+            <input type="radio" id="big" value="big" v-model="size" />
+          </label>
+          <label for="bigger" class="radioSelect" :class="{selected:size === 'bigger'}"
+            >Bigger
+            <input type="radio" id="bigger" value="bigger" v-model="size" />
+          </label>
+        </div>
+
         <hr />
+
         <input type="checkbox" id="exactMatch" v-model="exactMatch" />
         <label for="exactMatch">Exact Match</label>
+
         <hr />
-        <input type="radio" id="allLower" value="allLower" v-model="capitalization" />
-        <label for="allLower">All lower case</label>
-        <br />
-        <input type="radio" id="caseSensitive" value="caseSensitive" v-model="capitalization" />
-        <label for="caseSensitive">Case Sensitive</label>
-        <br />
-        <input type="radio" id="allUpper" value="allUpper" v-model="capitalization" />
-        <label for="allUpper">All Upper Case</label>
+
+        <div class="t-center">
+          <label for="allLower" class="radioSelect" :class="{selected:capitalization === 'allLower'}"
+            >All lower case
+            <input type="radio" id="allLower" value="allLower" v-model="capitalization" />
+          </label>
+          <label for="caseSensitive" class="radioSelect" :class="{selected:capitalization === 'caseSensitive'}"
+            >Case Sensitive
+            <input type="radio" id="caseSensitive" value="caseSensitive" v-model="capitalization" />
+          </label>
+          <label for="allUpper" class="radioSelect" :class="{selected:capitalization === 'allUpper'}"
+            >All Upper Case
+            <input type="radio" id="allUpper" value="allUpper" v-model="capitalization" />
+          </label>
+        </div>
+
         <hr />
         <input type="color" id="letterColorActive" value="#ff0000" v-model="letterColorActive" />
         <label for="letterColorActive">letterColorActive</label>
@@ -62,7 +83,9 @@
         <label for="bgColor">bgColor</label>
       </div>
       <p>Non valid characters are: {{ notValidChars }}</p>
-      <p>If a letter is non valid as-is, it will check if it's available in uppercase, then in lowercase, unless Exact-match is checked.</p>
+      <p>
+        If a letter is non valid as-is, it will check if it's available in uppercase, then in lowercase, unless Exact-match is checked.
+      </p>
     </div>
     <script src="app.js"></script>
   </body>
