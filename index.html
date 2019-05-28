@@ -10,6 +10,10 @@
   </head>
   <body>
     <div id="app">
+      <h1>Digital Display</h1>
+      <h4>Developped by <a href="https://www.vbeaulieu.com" target="_blank">Vincent Beaulieu</a></h4>
+      <h4>Source code on <a href="https://github.com/stlows/digital-display" target="_blank">github</a></h4>
+      <div class="separator"></div>
       <div class="displayContainer">
         <div class="display" :style="{backgroundColor:bgColor}">
           <div class="character" :class="size" v-for="char in characters">
@@ -50,12 +54,16 @@
           </label>
         </div>
 
-        <hr />
+        <div class="separator"></div>
 
-        <input type="checkbox" id="exactMatch" v-model="exactMatch" />
-        <label for="exactMatch">Exact Match</label>
+        <div class="t-center">
+          <label for="exactMatch" class="checkboxSelect" :class="{selected:exactMatch}"
+            >Exact Match
+            <input type="checkbox" id="exactMatch" v-model="exactMatch" />
+          </label>
+        </div>
 
-        <hr />
+        <div class="separator"></div>
 
         <div class="t-center">
           <label for="allLower" class="radioSelect" :class="{selected:capitalization === 'allLower'}"
@@ -72,18 +80,27 @@
           </label>
         </div>
 
-        <hr />
-        <input type="color" id="letterColorActive" value="#ff0000" v-model="letterColorActive" />
-        <label for="letterColorActive">letterColorActive</label>
-        <br />
-        <input type="color" id="letterColorInactive" value="#222222" v-model="letterColorInactive" />
-        <label for="letterColorInactive">letterColorInactive</label>
-        <br />
-        <input type="color" id="bgColor" value="#000000" v-model="bgColor" />
-        <label for="bgColor">bgColor</label>
+        <div class="separator"></div>
+
+        <div class="t-center">
+          <div class="colorSelect">
+            <input type="color" id="letterColorActive" value="#ff0000" v-model="letterColorActive" />
+            <label for="letterColorActive">Symbol color</label>
+          </div>
+          <div class="colorSelect">
+            <input type="color" id="letterColorInactive" value="#222222" v-model="letterColorInactive" />
+            <label for="letterColorInactive">Symbol (inactive) color</label>
+          </div>
+          <div class="colorSelect">
+            <input type="color" id="bgColor" value="#000000" v-model="bgColor" />
+            <label for="bgColor">Background color</label>
+          </div>
+        </div>
+
+        <div class="separator"></div>
       </div>
-      <p>Non valid characters are: {{ notValidChars }}</p>
-      <p>
+      <p class="info">Non valid characters are: {{ notValidChars }}</p>
+      <p class="info">
         If a letter is non valid as-is, it will check if it's available in uppercase, then in lowercase, unless Exact-match is checked.
       </p>
     </div>
