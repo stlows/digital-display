@@ -18,6 +18,7 @@ const dict = {
   d: [false, false, true, true, true, true, true],
   E: [true, true, false, true, true, false, true],
   F: [true, true, false, true, true, false, false],
+  G: [true, true, false, false, true, true, true],
   H: [false, true, true, true, true, true, false],
   h: [false, true, false, true, true, true, false],
   I: [false, true, false, false, true, false, false],
@@ -33,6 +34,7 @@ const dict = {
   S: [true, true, false, true, false, true, true],
   U: [false, true, true, false, true, true, true],
   u: [false, false, false, false, true, true, true],
+  Y: [false, true, true, true, false, true, true],
   "-": [false, false, false, true, false, false, false],
   _: [false, false, false, false, false, false, true]
 };
@@ -42,7 +44,7 @@ var app = new Vue({
   data: {
     message: "---",
     size: "normal",
-    notValidChars: ["a", "e", "f", "G", "g", "j", "K", "k", "M", "m", "N", "p", "R", "s", "T", "t", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"],
+    notValidChars: ["a", "e", "f", "g", "j", "K", "k", "M", "m", "N", "p", "R", "s", "T", "t", "V", "v", "W", "w", "X", "x", "y", "Z", "z"],
     exactMatch: false,
     capitalization: "caseSensitive",
     letterColorActive: "#3AEC1C",
